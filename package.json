@@ -1,0 +1,30 @@
+{
+  "name": "inserturlparams",
+  "version": "1.0.0",
+  "description": "Insert dynamic data into url path params",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanpmaxwell/inserturlparams.git"
+  },
+  "keywords": [
+    "insert",
+    "url",
+    "param",
+    "params",
+    "dynamic",
+    "setup",
+    "node",
+    "client",
+    "browser"
+  ],
+  "author": "sean maxwell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seanpmaxwell/inserturlparams/issues"
+  },
+  "homepage": "https://github.com/seanpmaxwell/inserturlparams#readme"
+}
