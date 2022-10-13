@@ -4,7 +4,7 @@
   "description": "Insert dynamic data into url path params",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npx ts-node test.ts"
   },
   "repository": {
     "type": "git",

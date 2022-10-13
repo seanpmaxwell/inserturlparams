@@ -2,6 +2,7 @@
 
 const incorrectNumOfParamsErr = 'Supplied number of params does not match ' + 
   'number of url params';
+const urlNotAStringErr = 'url must be a string';
 
 
 // **** Types **** //
@@ -18,6 +19,10 @@ function insertUrlParams(
   url: string, 
   params: TPrimitive | TPrimitive[],
 ): string {
+  // Check url
+  if (typeof url !== 'string') {
+    throw Error(urlNotAStringErr);
+  }
   // Convert to array if not one.
   if (!(params instanceof Array)) {
     params = [params];
@@ -46,7 +51,7 @@ function insertUrlParams(
   }
   // Check number of params correct
   if (pathParamsIdx !== params.length) {
-    alert(incorrectNumOfParamsErr);
+    throw Error(incorrectNumOfParamsErr);
   }
   // Return
   return url;
