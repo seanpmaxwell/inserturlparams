@@ -12,10 +12,16 @@ such as in React/Express projects.
 - It replaces any part of a url that starts with `/:`. i.e. `/api/v1/:param/hello` 
 with a primitive from an array.
 
-- Sample code:
+
+#### Installation
+
+- `npm i -s inserturlparams`
+
+
+#### Sample code:
 
 ```typescript
-  import insertUrlParams from 'insertUrlParams';
+  import insertUrlParams from 'inserturlparams';
 
   // **NOTE** that the array must be in the order that you intend to replace them in the url
   const data = [5, 'hello', true, undefined, null];
