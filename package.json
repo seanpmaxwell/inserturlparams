@@ -8,7 +8,8 @@
     "dist": "dist"
   },
   "scripts": {
-    "test": "npx ts-node test.ts",
+    "test": "npm run build && npx ts-node ./test/test.ts",
+    "test:js": "npm run build && node ./test/test.js",
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "repository": {

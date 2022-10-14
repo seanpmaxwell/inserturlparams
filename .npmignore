@@ -2,7 +2,7 @@
 
 # ignore dev files
 src
-test.ts
+test
 rollup.config.js
 
 # not needed npm stuff

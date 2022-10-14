@@ -14,8 +14,6 @@ export default {
     typescript({
       compilerOptions: { module: 'esnext' },
     }),
-    terser({
-      include: ['./dist/index.js']
-    }),
+    terser(),
   ],
 };
