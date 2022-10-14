@@ -1,5 +1,8 @@
-import insertUrlParams, { TPrimitive as Tprim } from './insertUrlParams';
+export { TPrimitive } from './insertUrlParams';
 
+export { default } from './insertUrlParams';
 
-export type TPrimitive = Tprim;
-export default insertUrlParams;
+console.log('horse')
+
+// module.exports.insertUrlParams = insertUrlParams;
+

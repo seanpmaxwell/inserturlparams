@@ -3,11 +3,9 @@
 # ignore dev files
 src
 test.ts
+rollup.config.js
 
 # not needed npm stuff
 package-lock.json
 node_modules
 tsconfig.json
-
-# include typings files
-!*.d.ts

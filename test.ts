@@ -1,4 +1,5 @@
-import insertUrlParams, { TPrimitive } from './src';
+// import insertUrlParams, { TPrimitive } from './src';
+import insertUrlParams, { TPrimitive } from './dist';
 
 
 // **** Setup Examples **** //
