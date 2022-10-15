@@ -23,6 +23,7 @@ with a primitive from an array or object.
 ```typescript
   import insertUrlParams, { TPrimitive, TObject } from 'inserturlparams';
 
+
   // **** Example 1 **** //
 
   // Object keys must match the param names in the url
@@ -34,8 +35,6 @@ with a primitive from an array or object.
     random: null,
   };
   const url1 = '/api/v1/:id/cheese/:msg/is-good/:really/dog/cow/:something/:random';
-
-  // Format url
   const resp1 = insertUrlParams(url1, data1);
   console.log(resp1) `=> /api/v1/5/cheese/hello/is-good/true/dog/cow/undefined/null`;
 
@@ -46,8 +45,6 @@ with a primitive from an array or object.
   // and the length of the array must match the number of params
   const data2: TPrimitive[] = [5, 'hello', true, undefined, null];
   const url2 = '/api/v1/:id/cheese/:msg/is-good/:really/dog/cow/:something/:random';
-
-  // Format url
   const resp2 = insertUrlParams(url2, data2);
   console.log(resp2) `=> /api/v1/5/cheese/hello/is-good/true/dog/cow/undefined/null`;
 
