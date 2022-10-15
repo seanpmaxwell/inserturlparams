@@ -1,4 +1,5 @@
-import insertUrlParams, { TPrimitive } from '../dist';
+import insertUrlParams, { TPrimitive, TObject } from '../dist';
+// import insertUrlParams, { TPrimitive, TObject } from '../src';
 
 
 // **** Setup Examples **** //
@@ -35,6 +36,16 @@ const example6 = {
   url: 1234,
 };
 
+const example7 = {
+  data: {
+    id: 5,
+    msg: 'hello',
+    really: true,
+    something: undefined,
+    random: null,
+  },
+  url: '/api/v1/:id/cheese/:msg/is-good/:really/dog/cow/:something/:random',
+};
 
 // **** Print Examples **** //
 
@@ -44,12 +55,13 @@ printExample(example3);
 printExample(example4);
 // printExample(example5);
 // printExample(example6 as any);
+printExample(example7)
 
 
 // **** Types **** //
 
 interface IExample {
-  data: TPrimitive | TPrimitive[];
+  data: TPrimitive | TPrimitive[] | TObject;
   url: string;
 }
 
