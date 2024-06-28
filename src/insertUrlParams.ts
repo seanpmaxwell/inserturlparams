@@ -1,8 +1,10 @@
 // **** Variables **** //
 
-const incorrectNumOfParamsErr = 'Supplied number of params does not match ' + 
-  'number of url params';
-const urlNotAStringErr = 'url must be a string';
+const Errors = {
+  IncorrectNumOfParams: 'Supplied number of params does not match number ' + 
+    'of url params',
+  UrlNotAStr: 'Url must be a string',
+} as const;
 
 
 // **** Types **** //
@@ -23,7 +25,7 @@ function insertUrlParams(
 ): string {
   // Check url
   if (typeof url !== 'string') {
-    throw Error(urlNotAStringErr);
+    throw Error(Errors.UrlNotAStr);
   }
   // Convert to array if a primitive.
   if (typeof params !== 'object') {
@@ -68,7 +70,7 @@ function insertUrlParams(
   }
   // Check number of params correct
   if (Array.isArray(params) && paramArrIdx !== params.length) {
-    throw Error(incorrectNumOfParamsErr);
+    throw Error(Errors.IncorrectNumOfParams);
   }
   // Return
   return url;
