@@ -1,5 +1,5 @@
-import insertUrlParams, { TPrimitive, TObject } from '../dist';
-// import insertUrlParams, { TPrimitive, TObject } from '../src';
+import insertUrlParams, { TUrlParams, TParamArr, TParam } from '../dist';
+// import insertUrlParams, { TUrlParams, TParamArr, TParam } from '../src';
 
 
 // **** Setup Examples **** //
@@ -61,7 +61,7 @@ printExample(example7)
 // **** Types **** //
 
 interface IExample {
-  data: TPrimitive | TPrimitive[] | TObject;
+  data: TUrlParams | TParamArr | TParam
   url: string;
 }
 

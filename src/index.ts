@@ -1,1 +1,7 @@
-export { default, TPrimitive, TObject } from './insertUrlParams';
+
+export {
+  default,
+  TUrlParams,
+  TParamArr,
+  TParam,
+} from './insertUrlParams';

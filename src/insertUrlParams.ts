@@ -7,8 +7,9 @@ const urlNotAStringErr = 'url must be a string';
 
 // **** Types **** //
 
-export type TPrimitive = string | number | boolean | null | undefined;
-export type TObject = Record<string, TPrimitive>;
+export type TParam = string | number | boolean | null | undefined;
+export type TUrlParams = Record<string, TParam>;
+export type TParamArr = TParam[];
 
 
 // **** Functions **** //
@@ -18,7 +19,7 @@ export type TObject = Record<string, TPrimitive>;
  */
 function insertUrlParams(
   url: string, 
-  params: TPrimitive | TPrimitive[] | TObject,
+  params: TUrlParams | TParamArr | TParam,
 ): string {
   // Check url
   if (typeof url !== 'string') {
@@ -48,12 +49,12 @@ function insertUrlParams(
       }
       // Get param value
       let val;
-      if (params instanceof Array) {
+      if (Array.isArray(params)) {
         val = params[paramArrIdx++]
       } else {
         const j = (urlEndReached ? paramEnd + 1 : paramEnd);
         const paramKey = url.slice(i + 2, j);
-        val = (params as TObject)[paramKey];
+        val = params?.[paramKey];
       }
       const param = String(val);
       // Splice in the value
@@ -66,7 +67,7 @@ function insertUrlParams(
     }
   }
   // Check number of params correct
-  if (params instanceof Array && paramArrIdx !== params.length) {
+  if (Array.isArray(params) && paramArrIdx !== params.length) {
     throw Error(incorrectNumOfParamsErr);
   }
   // Return
