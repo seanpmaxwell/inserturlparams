@@ -1,4 +1,4 @@
-const insertUrlParams = require('../dist');
+const insertUrlParams = require('../').default;
 
 const example = {
   data: [5, 'hello', true, undefined, null],
