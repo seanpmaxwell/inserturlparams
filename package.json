@@ -1,16 +1,18 @@
 {
   "name": "inserturlparams",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Insert dynamic data into url path params",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "directories": {
-    "dist": "dist"
-  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
-    "test": "npm run build && npx ts-node ./test/test.ts",
-    "test:js": "npm run build && node ./test/test.js",
     "build": "rimraf dist && rollup -c rollup.config.mjs"
+  },
+  "exports": {
+    "require": "./dist/cjs/index.cjs",
+    "import": "./dist/esm/index.js",
+    "default": "./dist/cjs/index.cjs"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,8 @@
   },
   "homepage": "https://github.com/seanpmaxwell/inserturlparams#readme",
   "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "rimraf": "^6.0.1",
