@@ -9,8 +9,7 @@ useful for big web projects where you store large numbers of long urls.
 #### How it works
 - It replaces any part of a url that starts with `/:`. i.e. `/api/v1/:param/hello` 
 with a value from an array or object.
-- It can also append search (aka query) params to the end of your url using an object.
-- `insertUrlParams(urlString, pathParams, searchParams) => full-url-string`.
+- `insertUrlParams(urlString, pathParams) => full-url-string`.
 
 
 #### Installation
@@ -23,10 +22,6 @@ skipped, but `null` and `undefined` will still be included.
 - For search-params, arrays and primitives are allowed: arrays can only contain 
 primitives and will be join by `,`. Empty strings/arrays and `undefined` will be 
 skipped but `null` will still be included.
-- If you want to append search-params but not any path-params, pass an empty string 
-`''` for the path-params argument.
-- There is also an additional `appendSearchParams()` function if you want to append some 
-additional search-params to an existing formatted url for whatever reason.
 
 
 #### Sample code:
@@ -35,7 +30,6 @@ import insertUrlParams, {
   TParamObj,
   TParam,
   TSearchParams,
-  appendSearchParams,
 } from '../';
 
 
@@ -63,30 +57,6 @@ console.log(resp2); // "/api/v1/5/cheese/hello/is-good/true/dog/cow/undefined/nu
 // Example 3: You can use a single primtive.
 const resp3 = insertUrlParams('/api/v1/:id/cheese', 5);
 console.log(resp3); // "/api/v1/5/cheese";
-
-
-// Example 4: Append search params.
-const searchParams = {
-  dog: 'foo',
-  daisy: ['doo', 5, false, '', null, undefined, '', '', ''],
-  blah: '',
-  something: null,
-  else: undefined,
-}
-const resp4 = insertUrlParams('/api/v1/:id/cheese', 5, searchParams);
-console.log(resp4); // "/api/v1/5/cheese?dog=foo&daisy=doo,5,false,null&something=null"
-
-// Example 4: Append search-params, don't add path-params.
-const searchParams2 = {
-  dog: 'foo',
-  else: undefined,
-}
-const resp5 = insertUrlParams('/api/v1/cheese', '', searchParams2);
-console.log(resp5); // "/api/v1/cheese?dog=foo"
-
-// Example 5: Append additional search-params
-console.log(appendSearchParams('a.com/api/v1', { dog: 'fido' })) // "a.com/api/v1?dog=fido"
-console.log(appendSearchParams('a.com/api/v1?horse=ed', { dog: 'fido' })) // a.com/api/v1?horse=ed&dog=fido
 ```
 
 

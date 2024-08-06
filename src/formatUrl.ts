@@ -12,7 +12,6 @@ const Errors = {
 
 export type TParam = string | number | boolean | null | undefined;
 export type TParamObj = Record<string, TParam>;
-export type TSearchParams = Record<string, TParam | TParam[]>;
 
 
 // **** Functions **** //
@@ -23,18 +22,13 @@ export type TSearchParams = Record<string, TParam | TParam[]>;
 function formatUrl(
   url: string, 
   pathParams: TParamObj | TParam[] | TParam,
-  searchParams?: TSearchParams,
 ): string {
   // Check url
   if (typeof url !== 'string') {
     throw Error(Errors.UrlNotAStr);
   }
-  // Setup params
-  let retVal = _insertPathParams(url, pathParams);
-  const searchParamsStr = _formatSearchParams(searchParams);
-  retVal += searchParamsStr;
   // Return
-  return retVal;
+  return _insertPathParams(url, pathParams);
 }
 
 /**
@@ -121,106 +115,6 @@ function _checkPathParamValid(val: unknown): boolean {
     typeof val === 'number' || 
     typeof val === 'boolean'
   );
-}
-
-/**
- * Setup url params { id: 1, offerType: true } => "?id=1&offerType=true". Note 
- * that undefined, empty strings, and empty arrays will be skipped. Array 
- * values will be converted to strings and joined by ','. "null" will still be
- * included.
- */
-function _formatSearchParams(searchParams?: TSearchParams) {
-  // Check object
-  if (typeof searchParams !== 'object') {
-    return '';
-  }
-  // Loop through params
-  let retVal = '';
-  for (const key in searchParams) {
-    const val = searchParams[key];
-    if (!_checkIncludeSearchParam(val)) {
-      continue;
-    }
-    const valF = (Array.isArray(val) ? _formatArr(val) : String(val));
-    if (valF.length > 0) {
-      retVal += '&' + (key + '=' + valF);
-    }
-  }
-  // Append '?'
-  if (!!retVal) {
-    retVal = '?' + retVal.slice(1);
-  }
-  // Return
-  return retVal;
-}
-
-/**
- * Check to include a search param
- */
-function _checkIncludeSearchParam(param: unknown): boolean {
-  if (param === undefined || param === '') {
-    return false;
-  }
-  if (Array.isArray(param) && param.length > 0) {
-    return true;
-  }
-  return (
-    typeof param === 'string' ||
-    typeof param === 'number' ||
-    typeof param === 'boolean' || 
-    param === null
-  );
-}
-
-/**
- * Can't do a simple Array.join() cause need to exclude undefined, empty
- * strings, but do need to include null.
- */
-function _formatArr(arr: TParam[]): string {
-  let retVal = '';
-  for (let i = 0; i < arr.length; i++) {
-    const val = arr[i];
-    if (!_checkInclueArrVal(val)) {
-      continue;
-    }
-    retVal += (String(val) + ',');
-  }
-  return retVal.slice(0, -1); ;
-}
-
-/**
- * Check whether a value in a search-params array should be included
- */
-function _checkInclueArrVal(item: unknown): boolean {
-  if (item === '') {
-    return false;
-  }
-  return (
-    typeof item === 'string' ||
-    typeof item === 'boolean' || 
-    typeof item === 'number' || 
-    item === null
-  )
-}
-
-/**
- * Provide an existing query-params string, and append some extra queryParams.
- */
-export function appendSearchParams(url: string, searchParams: TSearchParams) {
-  const newStr = _formatSearchParams(searchParams);
-  if (!!url && !!newStr) {
-    if (url.includes('?')) {
-      return url + '&' + newStr.slice(1);
-    } else {
-      return url + newStr;
-    }
-  } else if (!!url && !newStr) {
-    return url;
-  } else if (!url && !!newStr) {
-    return newStr;
-  } else {
-    return '';
-  }
 }
 
 
