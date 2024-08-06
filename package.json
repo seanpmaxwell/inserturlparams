@@ -7,7 +7,8 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.mjs"
+    "build": "rimraf dist && rollup -c rollup.config.mjs",
+    "test": "node --experimental-specifier-resolution=node --loader ts-node/esm test/index.ts"
   },
   "exports": {
     "require": "./dist/cjs/index.cjs",
@@ -42,6 +43,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "rimraf": "^6.0.1",
     "rollup": "^4.19.1",
+    "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "typescript": "^5.5.4"
   }

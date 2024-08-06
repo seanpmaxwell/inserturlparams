@@ -7,24 +7,6 @@ import terser from '@rollup/plugin-terser';
 const input = ['src/index.ts'];
 
 
-
-// export default {
-//   input: 'src/index.ts',
-//   output: {
-//     dir: './dist',
-//     format: 'cjs',
-//     sourcemap: true,
-//     exports: 'auto',
-//   },
-//   plugins: [
-//     typescript({
-//       compilerOptions: { module: 'esnext' },
-//     }),
-//     terser(),
-//   ],
-// };
-
-
 export default [
   // UMD
   {
@@ -35,8 +17,8 @@ export default [
         babelHelpers: 'bundled',
       }),
       terser(),
-
       typescript({
+        tsconfig: "tsconfig.build.json",
         compilerOptions: {
           outDir: 'dist',
         },
@@ -58,6 +40,7 @@ export default [
     plugins: [
       nodeResolve(),
       typescript({
+        tsconfig: "tsconfig.build.json",
         compilerOptions: {
           outDir: 'dist/esm',
         },
@@ -76,8 +59,8 @@ export default [
     input,
     plugins: [
       nodeResolve(),
-
       typescript({
+        tsconfig: "tsconfig.build.json",
         compilerOptions: {
           outDir: 'dist/cjs',
         },
