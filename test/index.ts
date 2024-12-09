@@ -1,7 +1,7 @@
 import insertUrlParams, {
   TParamObj,
   TParam,
-} from '../dist/esm';
+} from '../src';
 
 
 // **** Variables **** //
