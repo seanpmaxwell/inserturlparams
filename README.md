@@ -1,6 +1,5 @@
-<div style="background:#fff3cd; padding:12px; border-left:6px solid #ffcc00;">
-  <strong>Warning:</strong> This API is unstable.
-</div>
+> [!WARNING]
+> This package is technically obsolete. If you are building a server type application with multiple URL endpoints which need to be called (which you probably are if you're looking at this package), I highly encourage you to checkout <a href="https://github.com/seanpmaxwell/jet-paths">✈️ jet-paths</a>
 
 # About inserturlparams
 
