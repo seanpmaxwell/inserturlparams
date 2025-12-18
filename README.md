@@ -1,3 +1,7 @@
+<div style="background:#fff3cd; padding:12px; border-left:6px solid #ffcc00;">
+  <strong>Warning:</strong> This API is unstable.
+</div>
+
 # About inserturlparams
 
 Insert dynamic data in url path/search params. Works client side or in NodeJS. Really 
